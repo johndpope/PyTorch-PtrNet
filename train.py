@@ -50,9 +50,9 @@ class Trainer:
 		self.optimizer.step()
 
 		self.episode += 1
-		print 'Episode :- ', self.episode, ' L2 Loss :- ', loss.data.numpy(), \
+		print('Episode :- ', self.episode, ' L2 Loss :- ', loss.data.numpy(), \
 			' My Loss :- ', self.incorrect_count_loss(correct_out, pred_out),\
-			' My Score :- ', self.correct_count_score(correct_out, pred_out)
+			' My Score :- ', self.correct_count_score(correct_out, pred_out))
 
 		if self.episode%500==0:
 			self.test_batch(input)
@@ -61,23 +61,23 @@ class Trainer:
 		pred_out = self.ptrNet.forward(input)
 		pred_out = pred_out.data.numpy()
 
-		print ' --- INPUT ---'
+		print(' --- INPUT ---')
 		for i in range(5):
-			print input[i]
+			print(input[i])
 
-		print ' --- OUTPUT ---'
+		print(' --- OUTPUT ---')
 		for i in range(5):
 			for j in range(input.shape[1]):
-				print input[i][np.argmax(pred_out[j][i])];
+				print(input[i][np.argmax(pred_out[j][i])]);
 				# print pred_out[j][i]
-			print '\n'
+			print('\n')
 
-		print ' ---- PROB ----'
+		print(' ---- PROB ----')
 		for i in range(5):
 			for j in range(input.shape[1]):
 				# print input[i][np.argmax(pred_out[j][i])];
-				print pred_out[j][i]
-			print '\n'
+				print(pred_out[j][i])
+			print('\n')
 
 	def save_model(self, episode_count):
 		"""
@@ -85,8 +85,8 @@ class Trainer:
 		:param episode_count: the count of episodes iterated
 		:return:
 		"""
-		torch.save(self.ptrNet.state_dict(), './Models/' + str(episode_count) + '_net.pt')
-		print 'Model saved successfully'
+		torch.save(self.ptrNet.state_dict(), '.Models/' + str(episode_count) + '_net.pt')
+		print('Model saved successfully')
 
 	def load_model(self, episode):
 		"""
@@ -94,5 +94,5 @@ class Trainer:
 		:param episode: the count of episodes iterated (used to find the file name)
 		:return:
 		"""
-		self.ptrNet.load_state_dict(torch.load('./Models/' + str(episode) + '_net.pt'))
-		print 'Model loaded succesfully'
+		self.ptrNet.load_state_dict(torch.load('.Models/' + str(episode) + '_net.pt'))
+		print('Model loaded succesfully')

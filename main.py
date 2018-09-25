@@ -31,7 +31,7 @@ def generate_sorted_onehot(input):
 def sanity_check_sorted_onehot():
 	arr = [[.3,.1,.2],[.1,.2,.3]]
 	out = generate_sorted_onehot(arr)
-	print out
+	print(out)
 
 
 # hyper-parameters config
